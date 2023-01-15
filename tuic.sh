@@ -1,6 +1,6 @@
 #!/bin/bash
 tuygV="22.11.23 V 1.0"
-remoteV=`wget -qO- https://gitlab.com/rwkgyg/tuic-yg/raw/main/tuic.sh | sed  -n 2p | cut -d '"' -f 2`
+remoteV=`wget -qO- https://raw.githubusercontent.com/fy-deng/tuic/main/tuic.sh | sed  -n 2p | cut -d '"' -f 2`
 chmod +x /root/tuic.sh
 red='\033[0;31m'
 yellow='\033[0;33m'
@@ -168,14 +168,14 @@ rm -rf ~/.acme.sh acme.sh
 sed -i '/--cron/d' /etc/crontab
 [[ -z $(/root/.acme.sh/acme.sh -v 2>/dev/null) ]] && green "acme.sh卸载完毕" || red "acme.sh卸载失败"
 sleep 2
-wget -N https://gitlab.com/rwkgyg/acme-script/raw/main/acme.sh && bash acme.sh
+wget -N https://raw.githubusercontent.com/fy-deng/acme-2/main/acme.sh && bash acme.sh
 ym=$(cat /root/ygkkkca/ca.log)
 if [[ ! -f /root/ygkkkca/cert.crt && ! -f /root/ygkkkca/private.key ]] && [[ ! -s /root/ygkkkca/cert.crt && ! -s /root/ygkkkca/private.key ]]; then
 red "证书申请失败，脚本退出" && exit
 fi
 fi
 else
-wget -N https://gitlab.com/rwkgyg/acme-script/raw/main/acme.sh && bash acme.sh
+wget -N https://raw.githubusercontent.com/fy-deng/acme-2/main/acme.sh && bash acme.sh
 ym=$(cat /root/ygkkkca/ca.log)
 if [[ ! -f /root/ygkkkca/cert.crt && ! -f /root/ygkkkca/private.key ]] && [[ ! -s /root/ygkkkca/cert.crt && ! -s /root/ygkkkca/private.key ]]; then
 red "证书申请失败，脚本退出" && exit
@@ -374,7 +374,7 @@ susstuic
 }
 
 acme(){
-bash <(curl -L -s https://gitlab.com/rwkgyg/acme-script/raw/main/acme.sh)
+bash <(curl -L -s https://raw.githubusercontent.com/fy-deng/acme-2/main/acme.sh)
 }
 cfwarp(){
 wget -N --no-check-certificate https://gitlab.com/rwkgyg/cfwarp/raw/main/CFwarp.sh && bash CFwarp.sh
@@ -397,7 +397,7 @@ uptuicyg(){
 if [[ -z $(systemctl status tuic 2>/dev/null | grep -w active) && ! -f '/etc/tuic/tuic.json' ]]; then
 red "未正常安装tuic-yg" && exit
 fi
-wget -N https://gitlab.com/rwkgyg/tuic-yg/raw/main/tuic.sh
+wget -N https://raw.githubusercontent.com/fy-deng/tuic/main/tuic.sh
 chmod +x /root/tuic.sh 
 ln -sf /root/tuic.sh /usr/bin/tu
 green "tuic-yg安装脚本升级成功" && tu
@@ -479,9 +479,9 @@ echo -e "${bblue}     ░██        ░${plain}██    ░██ ██    
 echo -e "${bblue}     ░██ ${plain}        ░██    ░░██        ░██ ░██       ░${red}██ ░██       ░██ ░██ ${plain}  "
 echo -e "${bblue}     ░█${plain}█          ░██ ██ ██         ░██  ░░${red}██     ░██  ░░██     ░██  ░░██ ${plain}  "
 green "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" 
-white "甬哥Gitlab项目  ：gitlab.com/rwkgyg"
-white "甬哥blogger博客 ：ygkkk.blogspot.com"
-white "甬哥YouTube频道 ：www.youtube.com/c/甬哥侃侃侃kkkyg"
+#white "甬哥Gitlab项目  ：gitlab.com/rwkgyg"
+#white "甬哥blogger博客 ：ygkkk.blogspot.com"
+#white "甬哥YouTube频道 ：www.youtube.com/c/甬哥侃侃侃kkkyg"
 green "tuic-yg脚本安装成功后，再次进入脚本的快捷方式为 tu"
 red "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 green "  1. 安装tuic（必选）" 
