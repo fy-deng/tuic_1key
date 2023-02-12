@@ -1,5 +1,5 @@
 #!/bin/bash
-tuygV="22.11.23 V 1.0"
+tuygV="23.1.19 V 1.1"
 remoteV=`wget -qO- https://raw.githubusercontent.com/fy-deng/tuic/main/tuic.sh | sed  -n 2p | cut -d '"' -f 2`
 chmod +x /root/tuic.sh
 red='\033[0;31m'
@@ -84,7 +84,7 @@ fi
 [[ $(type -P curl) ]] || (yellow "检测到curl未安装，升级安装中" && $yumapt update;$yumapt install curl)
 [[ ! $(type -P sysctl) ]] && ($yumapt update;$yumapt install procps)
 if [[ -z $(grep 'DiG 9' /etc/hosts) ]]; then
-v4=$(curl -s4m6 api64.ipify.org -k)
+v4=$(curl -s4m6 ip.sb -k)
 if [ -z $v4 ]; then
 echo -e nameserver 2a01:4f8:c2c:123f::1 > /etc/resolv.conf
 fi
@@ -232,7 +232,7 @@ blue "已确认令牌码Token：${pswd}\n"
 insconfig(){
 green "设置tuic的配置文件、服务进程……\n"
 sureipadress(){
-ip=$(curl -s4m6 api64.ipify.org -k) || ip=$(curl -s6m6 api64.ipify.org -k)
+ip=$(curl -s4m6 ip.sb -k) || ip=$(curl -s6m6 ip.sb -k)
 }
 wgcfgo
 mkdir /etc/tuic >/dev/null 2>&1
@@ -284,7 +284,7 @@ EOF
 
 cat << EOF >/etc/systemd/system/tuic.service
 [Unit]
-Description=YGKKK-TUIC
+Description=TUIC
 Documentation=https://gitlab.com/rwkgyg/tuic-yg
 After=network.target
 [Service]
@@ -460,7 +460,7 @@ else
 red "tuic服务启动失败，请运行systemctl status tuic查看服务状态并反馈，脚本退出" && exit
 fi
 red "======================================================================================"
-url="tuic://$ym:$port?password=$pswd&alpn=h3&mode=bbr#tuic-ios-ygkkk"
+url="tuic://$ym:$port?password=$pswd&alpn=h3&mode=bbr#tuic-ios-1"
 echo ${url} > /root/tuic/URL.txt
 green "\ntuic代理服务安装完成，生成脚本的快捷方式为 tu" && sleep 3
 blue "\nv2rayn客户端配置文件v2rayn.json保存到 /root/tuic/v2rayn.json\n"
